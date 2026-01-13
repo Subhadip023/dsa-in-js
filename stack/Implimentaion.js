@@ -9,14 +9,14 @@ class Stack {
     constructor(){
         this.top=null;
         this.bottom=null;
-        this.lenght=0;
+        this.length=0;
     }
     peek(){
         return this.top;
     }
     push(value){
         let newNode = new Node(value);
-        if (this.lenght==0) {
+        if (this.length==0) {
             this.top=newNode
             this.bottom=newNode
         }
@@ -25,15 +25,20 @@ class Stack {
             this.top=newNode;
             this.top.next=oldTop;
         }
-        this.lenght++;
+        this.length++;
         return this;
     }
     pop(){
         if (!this.top) {
             return null;
         }
-        const oldTop=this.top;
-        this.top
+        if (this.bottom === this.top){
+            this.bottom=null
+        }
+        // const oldTop=this.top;
+        this.top=this.top.next;
+        this.length--
+        return this
 
     }
 }
