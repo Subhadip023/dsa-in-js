@@ -12,27 +12,39 @@ class Queue {
        this.length = 0;
     }
     peek(){
-
+        return this.first;
     }
     enqueue(value){
         const newNode = new Node(value)
         if (this.first==null) {
             this.first = newNode;
-            this.last=this.first;
+            this.last= newNode;
         }else{
-            this.last.next=newNode
+            this.last.next=newNode;
+            this.last=newNode;
         }
         this.length++;
+        return this;
     }
     dequeue(){
-        
+        if (this.length===0) return null
+        if (this.first==this.last) {
+            this.first=null
+            this.last=null
+            return this
+        }
+        const currentFirst = this.first;
+        this.first = this.first.next;
+        this.length --;
+        return currentFirst;
     }
 }
 
-const myQ= new Queue();
+const myQ = new Queue();
 
 myQ.enqueue('first');
 myQ.enqueue('second');
-myQ.enqueue('last');
-
+myQ.enqueue('third');
+myQ.enqueue('fourth');
+myQ.dequeue()
 console.log(myQ);
